@@ -2,16 +2,16 @@
 
 from thinkbayes import Pmf
 
-def dice_prob(number_of_face):
+def dice_prob(num_face):
 	#initialize constructor
 	pmf = Pmf()
 
 	#create dice
-	dice = range(1, number_of_face + 1)
+	dice = range(1, num_face + 1)
 
 	#set probability of each face
 	for face in dice:
-		pmf.Set(face, 1/float(number_of_face))
+		pmf.Set(face, 1/float(num_face))
 
 	#print probabilities
 	for i in dice:
@@ -20,5 +20,6 @@ def dice_prob(number_of_face):
 	return pmf
 
 if __name__ == '__main__':
-	pmf = dice_prob(6)
+	num_face = 6
+	pmf = dice_prob(num_face)
 

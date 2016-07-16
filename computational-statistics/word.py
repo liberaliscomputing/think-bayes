@@ -1,22 +1,29 @@
 # -*- coding: utf-8 -*-
 
 from thinkbayes import Pmf
+import string
 
 #initialze constructor
 pmf = Pmf()
 
 #generate word list from text
 fname = 'data/aristotle.txt'
+words = []
 with open(fname) as f:
-	word_list = [line.rstrip().split() for line in f]
+	for line in f:
+		for word in line.strip().split():
+			word = word.translate(None, string.punctuation).lower()
+			words.append(word)
+u_words = set(words)
 
-print word_list
-'''
 #count words
-for word in word_list:
+for word in words:
 	pmf.Incr(word, 1)
 
 #normalize word freqeuncies as probabilities
 pmf.Normalize()
-'''
+
+#print probabilities
+for u_word in u_words:
+	print 'Probability of the word %s: %f' % (u_word,  pmf.Prob(u_word))
 

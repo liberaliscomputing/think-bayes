@@ -2,17 +2,6 @@
 
 from thinkbayes import Pmf
 
-class Cookie(Pmf):
-
-	def __init__(self, hypos):
-		Pmf.__init__(self)
-		for hypo in phypos:
-			self.Set(hypo, 1)
-		self.Normalize()
-
-#initialize constructor
-pmf = Pmf()
-
 bowls = {
 	'bowl_1': {
 		'prior': 0.5, 
@@ -24,6 +13,9 @@ bowls = {
 	}
 }
 
+#initialize constructor
+pmf = Pmf()
+
 #set prior and likelihood of each hypothesis
 for bowl, probs in bowls.items():
 	pmf.Set(bowl, probs['prior'])
@@ -33,5 +25,5 @@ for bowl, probs in bowls.items():
 pmf.Normalize()
 
 for bowl in bowls:
-	print 'Probability of %s given cookie: %f' % (bowl, pmf.Prob(bowl))
+	print 'Probability of %s given vanilla cookie: %f' % (bowl, pmf.Prob(bowl))
 
